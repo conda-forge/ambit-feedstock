@@ -33,5 +33,7 @@ ${BUILD_PREFIX}/bin/cmake ${CMAKE_ARGS} ${ARCH_ARGS} \
 cmake --build build --target install -j${CPU_COUNT}
 
 cd build
-ctest --rerun-failed --output-on-failure -j${CPU_COUNT}
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+    ctest --rerun-failed --output-on-failure -j${CPU_COUNT}
+fi
 
