@@ -1,6 +1,6 @@
 {% set name = "ambit" %}
-{% set version = "0.7" %}
-{% set sha256 = "97a4360db5cad6c9d2bc0932fc8641a3feb34a809c192c99886880073e87f8c2" %}
+{% set version = "0.7.1" %}
+{% set sha256 = "3725c5340dd64fbb789638924434895bb74aa9beabf13fe9a034518850c053b7" %}
 
 package:
   name: {{ name|lower }}-split
@@ -9,22 +9,22 @@ package:
 source:
   - url: https://github.com/jturney/{{ name }}/archive/v{{ version }}.tar.gz
     patches:
-      -  0001-lapack-private-to-avoid-overlinking.patch
+      - 0001-lapack-private-to-avoid-overlinking.patch
     sha256: {{ sha256 }}
-  - url: https://github.com/psi4/iomp5md/archive/31b4ccb.tar.gz               # [win]
+  - url: https://github.com/psi4/iomp5md/archive/31b4ccb.tar.gz  # [win]
     sha256: d9c6ad3976183f54b676335885d8557d67ca7b25ac4115b91b4cc42281d95f7c  # [win]
-    folder: external_src                                                      # [win]
+    folder: external_src  # [win]
 
 build:
-  number: 2
+  number: 0
   binary_relocation: true
 
 outputs:
   - name: ambit
-    script: build-cxx.sh                                                       # [unix]
-    script: bld-cxx.bat                                                        # [win]
+    script: build-cxx.sh  # [unix]
+    script: bld-cxx.bat  # [win]
     build:
-      skip: true                                                               # [win]
+      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage('ambit', max_pin='x.x') }}
       ignore_run_exports:
@@ -68,10 +68,10 @@ outputs:
         - objdump.exe -p %PREFIX%\\Library\\lib\\ambit.lib | findstr /i "dll"  # [win]
 
   - name: pyambit
-    script: build-py.sh                                                        # [unix]
-    script: bld-py.bat                                                         # [win]
+    script: build-py.sh  # [unix]
+    script: bld-py.bat  # [win]
     build:
-      skip: true                                                               # [win]
+      skip: true  # [win]
     requirements:
       build:
         - {{ compiler('c') }}
