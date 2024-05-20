@@ -16,7 +16,7 @@ source:
     folder: external_src  # [win]
 
 build:
-  number: 2
+  number: 3
   binary_relocation: true
 
 outputs:
@@ -34,6 +34,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -75,6 +76,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
