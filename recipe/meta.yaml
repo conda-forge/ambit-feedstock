@@ -16,7 +16,7 @@ source:
     folder: external_src  # [win]
 
 build:
-  number: 3
+  number: 4
   binary_relocation: true
 
 outputs:
@@ -27,10 +27,6 @@ outputs:
       skip: true  # [win]
       run_exports:
         - {{ pin_subpackage('ambit', max_pin='x.x') }}
-      ignore_run_exports:
-        # not using hdf5's fortran interface
-        - libgfortran-ng
-        - libgfortran5
     requirements:
       build:
         - {{ compiler('c') }}
