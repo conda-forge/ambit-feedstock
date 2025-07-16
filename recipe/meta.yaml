@@ -16,7 +16,7 @@ source:
     folder: external_src  # [win]
 
 build:
-  number: 8
+  number: 9
   binary_relocation: true
 
 outputs:
