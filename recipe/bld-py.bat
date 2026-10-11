@@ -1,5 +1,10 @@
 for /f %%i in ('python -c "import platform; print(int(platform.python_implementation() == 'PyPy'))"') do set IS_PYPY=%%i
 
+set SITEP="/../../Lib/site-packages"
+IF "%PY_VER%"=="3.15" (
+  set SITEP="/../../lib/python/site-packages"
+)
+
 cmake %CMAKE_ARGS% ^
   -G "Ninja" ^
   -S "%SRC_DIR%\\pyambit" ^
@@ -14,7 +19,7 @@ cmake %CMAKE_ARGS% ^
   -D CMAKE_INSTALL_INCLUDEDIR="Library\include" ^
   -D CMAKE_INSTALL_BINDIR="Library\bin" ^
   -D CMAKE_INSTALL_DATADIR="Library\share" ^
-  -D PYMOD_INSTALL_LIBDIR="/../../Lib/site-packages" ^
+  -D PYMOD_INSTALL_LIBDIR="%SITEP%" ^
   -D ambit_INSTALL_CMAKEDIR="Library\share\cmake\ambit" ^
   -D Python_EXECUTABLE="%PYTHON%" ^
   -D LAPACK_LIBRARIES="%PREFIX%\\Library\\lib\\lapack.lib;%PREFIX%\\Library\\lib\\blas.lib;%SRC_DIR%\\external_src\\conda\\win\\2019.1\\libiomp5md.lib" ^
