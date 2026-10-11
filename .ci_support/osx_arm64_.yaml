@@ -24,6 +24,7 @@ cxx_compiler_version:
 - '21'
 hdf5:
 - 1.14.6
+- '2'
 libblas:
 - 3.9.* *netlib
 liblapack:
