@@ -83,6 +83,7 @@ outputs:
       host:
         - {{ pin_subpackage('ambit', exact=True) }}
         - python
+        - libpython                                                            # [unix]
         - pybind11
         - pybind11-abi
         - numpy
